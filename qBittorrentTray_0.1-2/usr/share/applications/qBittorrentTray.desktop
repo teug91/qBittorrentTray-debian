@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=0.1
+Type=Application
+Name=qBittorrentTray
+Exec=/usr/local/bin/qBittorrentTray
+Terminal=false
+MimeType=application/x-bittorrent
+Icon=/usr/share/qBittorrentTray/qbdark_big.png
+Categories=Internet
