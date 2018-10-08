@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 import time
 from qbittorrent import Client
@@ -11,7 +11,7 @@ class Qbt(QThread):
     delete_file = Signal(str)
 
     def __init__(self, settings, torrent=None):
-        QThread.__init__(self)
+        super(Qbt, self).__init__()
         self._stop = False
         self._settings = settings
         self._torrent = torrent

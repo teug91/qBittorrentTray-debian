@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 from shared import resource_path
 from PySide2.QtWidgets import (QLineEdit, QPushButton, QApplication, QFormLayout, QVBoxLayout, QGridLayout, QDialog, QComboBox, QLabel, QCheckBox, QPushButton, QSizePolicy, QGroupBox)
@@ -10,7 +10,7 @@ class Settings_Window(QDialog):
     save_clicked = Signal(list)
 
     def __init__(self, values):
-        super().__init__(None, Qt.WindowSystemMenuHint | Qt.WindowTitleHint)
+        super(Settings_Window, self).__init__(None, Qt.WindowSystemMenuHint | Qt.WindowTitleHint)
 
         self._host = QLineEdit(values[0])
         self._host.setToolTip("Example: http://192.168.1.100:8080")

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 #import sys, os
 from shared import resource_path
@@ -17,7 +17,7 @@ class TrayIcon(QSystemTrayIcon):
         self._icon_qb = QIcon(resource_path("qbdark_big.png"))
         self._icon_pause = QIcon(resource_path("qbdark_pause_big.png"))
         self._icon_dc = QIcon(resource_path("qbdark_dc_big.png"))
-        super().__init__(self._icon_dc, parent=parentApp)
+        super(TrayIcon, self).__init__(self._icon_dc, parent=parentApp)
         self.setToolTip("qBittorrentTray")
         menu = QMenu()
         toggle_action = menu.addAction("Start/pause")

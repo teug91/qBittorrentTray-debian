@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 import base64
 from PySide2.QtCore import (Signal, QSettings, QObject)
@@ -6,7 +6,7 @@ from PySide2.QtCore import (Signal, QSettings, QObject)
 class SettingsManager(QObject):
 
     def __init__(self):
-        super().__init__()
+        super(SettingsManager, self).__init__()
         self._settings = QSettings("/etc/qBittorrentTray/config.ini", QSettings.IniFormat)
 
     def get_settings(self):
@@ -16,7 +16,7 @@ class SettingsManager(QObject):
                     self._settings.value("remove_ratio"), self._settings.value("remove_days"), self._settings.value("remove_action"), 
                     self._settings.value("ratio"), self._settings.value("days"), self._settings.value("delete"), self._settings.value("autorun")]
                 if settings[2]:
-                    settings[2] = base64.b64decode(bytearray([int(i) for i in settings[2]])).decode()
+                    settings[2] = base64.b64decode(settings[2])
                 return settings
             return self._default_settings()
         except Exception as e:

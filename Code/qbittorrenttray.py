@@ -1,8 +1,9 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 import sys
 import os
 import webbrowser
+import subprocess
 from PySide2.QtWidgets import QApplication, QDialog
 from tray import TrayIcon
 from settings_manager import SettingsManager
@@ -13,8 +14,7 @@ from qtsingleapplication import QtSingleApplication
 class Application():
 
     def __init__(self):
-        #self._path = os.path.dirname(os.path.realpath(sys.argv[0]))
-        #self._path += "/"
+        self._env = self._get_env()
         self._app = QtSingleApplication()
         self._app.messageReceived.connect(self._add_torrent)
         torrent = self._get_torrent(sys.argv)
@@ -85,7 +85,7 @@ class Application():
 
     def _webui(self):
         try:
-            webbrowser.open(self._settings_values[0])
+            subprocess.Popen(["xdg-open", self._settings_values[0]], env=self._env)
         except:
             pass
 
@@ -105,6 +105,19 @@ class Application():
             if arg.endswith(".torrent") or arg.startswith("magnet:?xt=urn:btih:"):
                 return arg
         return None
+
+    @staticmethod
+    def _get_env():
+        env = dict(os.environ)
+        lp_key = 'LD_LIBRARY_PATH'
+        lp_orig = env.get(lp_key + '_ORIG')
+        if lp_orig is not None:
+            env[lp_key] = lp_orig
+        else:
+            lp = env.get(lp_key)
+            if lp is not None:
+                env.pop(lp_key)
+        return env
 
 if __name__ == "__main__":
     Application()

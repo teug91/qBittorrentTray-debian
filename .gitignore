@@ -3,3 +3,5 @@ __pycache__/
 temp/
 plextray.spec
 build/
+*.pyc
+.pylintrc
