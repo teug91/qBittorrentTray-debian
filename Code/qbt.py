@@ -85,14 +85,16 @@ class Qbt(QThread):
             try:
                 torrent_file = open(torrent, 'rb')
                 self._qb.download_from_file(torrent_file)
+                if self._settings[8]:
+                    self.delete_file.emit(torrent)
             except Exception as e:
                 print("Failed to add torrent")
                 print(torrent)
                 print(e)
         elif torrent.startswith("magnet:?xt=urn:btih:"):
             try:
-                torrent_file = open(torrent, 'rb')
-                self._qb.download_from_file(torrent_file)
+                self._qb.download_from_link(torrent)
+                print("Added: " + torrent)
             except Exception as e:
                 print("Failed to add torrent")
                 print(torrent)

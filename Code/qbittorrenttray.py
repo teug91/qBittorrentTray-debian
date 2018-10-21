@@ -91,7 +91,9 @@ class Application():
 
     def _add_torrent(self, value):
         try:
+            print("Adding: " + value)
             self._qbt_thread.add_torrent(value)
+            print("Post add")
         except:
             pass
 

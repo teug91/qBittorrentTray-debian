@@ -5,3 +5,4 @@ plextray.spec
 build/
 *.pyc
 .pylintrc
+pyinstall
