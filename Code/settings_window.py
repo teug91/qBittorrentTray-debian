@@ -30,7 +30,7 @@ class Settings_Window(QDialog):
         _grid_layout.setColumnStretch(4, 1)
 
         self._ratio_box = QCheckBox("Seed torrents until their ratio exceeds")
-        self._ratio_box.setChecked(values[3] == "true")
+        self._ratio_box.setChecked(values[3])
         self._ratio_box.stateChanged.connect(self._removal_visibility)
         _grid_layout.addWidget(self._ratio_box, 0, 0)
         self._ratio = QComboBox()
@@ -41,7 +41,7 @@ class Settings_Window(QDialog):
         _grid_layout.addWidget(self._ratio, 0, 1)
 
         self._days_box = QCheckBox("Seed torrents until their seeding time exceeds")
-        self._days_box.setChecked(values[4] == "true")
+        self._days_box.setChecked(values[4])
         self._days_box.stateChanged.connect(self._removal_visibility)
         _grid_layout.addWidget(self._days_box, 1, 0)
         self._days = QComboBox()
@@ -67,7 +67,7 @@ class Settings_Window(QDialog):
         _bottom_grid_layout.setColumnStretch(1, 1)
 
         self._delete_torrent_box = QCheckBox("Delete .torrent after torrent is added")
-        self._delete_torrent_box.setChecked(values[8] == "true")
+        self._delete_torrent_box.setChecked(values[8])
         self._delete_torrent_box.setToolTip("Delete .torrent after attempting to add .torrent")
         _bottom_grid_layout.addWidget(self._delete_torrent_box, 1, 0)
         _save_button = QPushButton("Save")
@@ -101,7 +101,7 @@ class Settings_Window(QDialog):
     def _save_click(self):
         values = [self._host.text(), self._username.text(), self._password.text(), self._ratio_box.isChecked(), 
             self._days_box.isChecked(), self._remove_action.currentText(), self._ratio.currentText(), 
-            self._days.currentText(), self._delete_torrent_box.isChecked(), False]
+            self._days.currentText(), self._delete_torrent_box.isChecked()]
         self.save_clicked.emit(values)
         self.hide()
         self.close()

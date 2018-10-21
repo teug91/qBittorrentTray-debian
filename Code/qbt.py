@@ -19,7 +19,7 @@ class Qbt(QThread):
     def run(self):
         self._authenticate()
         if not self._stop:
-            if self._settings[3] == "true" or self._settings[5] == "true":
+            if self._settings[3] or self._settings[5]:
                 self.remove_check = True
             else:
                 self.remove_check = False
@@ -31,8 +31,8 @@ class Qbt(QThread):
                 if self.remove_check:
                     if count == 0:
                         count = 3
-                        days = (self._settings[3] == "true")
-                        ratio = (self._settings[4] == "true")
+                        days = (self._settings[3])
+                        ratio = (self._settings[4])
                         self.remove_torrents(days, ratio)
                     else:
                         count += 3
