@@ -2,7 +2,6 @@
 
 import sys
 import os
-import webbrowser
 import subprocess
 from PySide2.QtWidgets import QApplication, QDialog
 from tray import TrayIcon
