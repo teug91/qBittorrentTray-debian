@@ -1,5 +1,5 @@
 #!/bin/bash
 
 pyinstaller qbittorrenttray.spec
-mv dist/qbittorrenttray qBittorrentTray_0.2-1/usr/local/bin/qBittorrentTray
-dpkg-deb --build qBittorrentTray_0.2-1
+mv dist/qbittorrenttray qBittorrentTray_0.2-2/usr/local/bin/qBittorrentTray
+dpkg-deb --build qBittorrentTray_0.2-2

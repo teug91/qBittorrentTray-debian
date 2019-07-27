@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['Code/qbittorrenttray.py'],
-             pathex=['/home/terje/Documents/Projects/qBittorrentTray-debian/'],
+             pathex=['/home/terje/Documents/personal/qBittorrentTray-debian/'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -14,10 +14,10 @@ a = Analysis(['Code/qbittorrenttray.py'],
              win_no_prefer_redirects=False,
              win_private_assemblies=False,
              cipher=block_cipher)
-a.datas += [('qbdark_big.png','/home/terje/Documents/Projects/qBittorrentTray-debian/Resources/qbdark_big.png', "DATA"),
-            ('qbdark_dc_big.png','/home/terje/Documents/Projects/qBittorrentTray-debian/Resources/qbdark_dc_big.png', "DATA"),
-            ('qbdark_pause_big.png','/home/terje/Documents/Projects/qBittorrentTray-debian/Resources/qbdark_pause_big.png', "DATA"),
-            ('qbdark.ico','/home/terje/Documents/Projects/qBittorrentTray-debian/Resources/qbdark.ico', "DATA")]
+a.datas += [('qbdark_big.png','/home/terje/Documents/personal/qBittorrentTray-debian/Resources/qbdark_big.png', "DATA"),
+            ('qbdark_dc_big.png','/home/terje/Documents/personal/qBittorrentTray-debian/Resources/qbdark_dc_big.png', "DATA"),
+            ('qbdark_pause_big.png','/home/terje/Documents/personal/qBittorrentTray-debian/Resources/qbdark_pause_big.png', "DATA"),
+            ('qbdark.ico','/home/terje/Documents/personal/qBittorrentTray-debian/Resources/qbdark.ico', "DATA")]
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 exe = EXE(pyz,
