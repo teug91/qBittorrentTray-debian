@@ -1,16 +1,33 @@
 #!/usr/bin/python
 
 from shared import resource_path
-from PySide2.QtWidgets import (QLineEdit, QPushButton, QApplication, QFormLayout, QVBoxLayout, QGridLayout, QDialog, QComboBox, QLabel, QCheckBox, QPushButton, QSizePolicy, QGroupBox)
+from PySide2.QtWidgets import (
+    QLineEdit,
+    QPushButton,
+    QApplication,
+    QFormLayout,
+    QVBoxLayout,
+    QGridLayout,
+    QDialog,
+    QComboBox,
+    QLabel,
+    QCheckBox,
+    QPushButton,
+    QSizePolicy,
+    QGroupBox,
+)
 from PySide2.QtGui import QIcon
 from PySide2.QtCore import Signal, Qt
+
 
 class Settings_Window(QDialog):
 
     save_clicked = Signal(list)
 
     def __init__(self, values):
-        super(Settings_Window, self).__init__(None, Qt.WindowSystemMenuHint | Qt.WindowTitleHint)
+        super(Settings_Window, self).__init__(
+            None, Qt.WindowSystemMenuHint | Qt.WindowTitleHint
+        )
 
         self._host = QLineEdit(values[0])
         self._host.setToolTip("Example: http://192.168.1.100:8080")
@@ -34,7 +51,9 @@ class Settings_Window(QDialog):
         self._ratio_box.stateChanged.connect(self._removal_visibility)
         _grid_layout.addWidget(self._ratio_box, 0, 0)
         self._ratio = QComboBox()
-        self._ratio.addItems(["{0:.1f}".format(round(x, 1)) for x in list(self._drange(0, 9.9, 0.1))])
+        self._ratio.addItems(
+            ["{0:.1f}".format(round(x, 1)) for x in list(self._drange(0, 9.9, 0.1))]
+        )
         self._ratio.setCurrentText(values[6])
         self._ratio.setDisabled(True)
         self._ratio.setToolTip("Upload/download ratio")
@@ -66,17 +85,25 @@ class Settings_Window(QDialog):
         _bottom_grid_layout.setColumnMinimumWidth(1, 100)
         _bottom_grid_layout.setColumnStretch(1, 1)
 
+
+        self._exit_box = QCheckBox("Exit after torrent is added")
+        self._exit_box.setChecked(values[9])
+        self._exit_box.setToolTip(
+            "Exit qBittorrentTray after attempting to add .torrent"
+        )
+        _bottom_grid_layout.addWidget(self._exit_box, 1, 0)
         self._delete_torrent_box = QCheckBox("Delete .torrent after torrent is added")
         self._delete_torrent_box.setChecked(values[8])
-        self._delete_torrent_box.setToolTip("Delete .torrent after attempting to add .torrent")
-        _bottom_grid_layout.addWidget(self._delete_torrent_box, 1, 0)
+        self._delete_torrent_box.setToolTip(
+            "Delete .torrent after attempting to add .torrent"
+        )
+        _bottom_grid_layout.addWidget(self._delete_torrent_box, 2, 0)
         _save_button = QPushButton("Save")
         _save_button.clicked.connect(self._save_click)
-        _bottom_grid_layout.addWidget(_save_button, 1, 2)
+        _bottom_grid_layout.addWidget(_save_button, 2, 2)
         _cancel_button = QPushButton("Cancel")
         _cancel_button.clicked.connect(self._cancel_click)
-        _bottom_grid_layout.addWidget(_cancel_button, 1, 3)
-
+        _bottom_grid_layout.addWidget(_cancel_button, 2, 3)
 
         _main_layout = QVBoxLayout()
         _main_layout.addLayout(_form_layout)
@@ -99,9 +126,18 @@ class Settings_Window(QDialog):
         self.close()
 
     def _save_click(self):
-        values = [self._host.text(), self._username.text(), self._password.text(), self._ratio_box.isChecked(), 
-            self._days_box.isChecked(), self._remove_action.currentText(), self._ratio.currentText(), 
-            self._days.currentText(), self._delete_torrent_box.isChecked()]
+        values = [
+            self._host.text(),
+            self._username.text(),
+            self._password.text(),
+            self._ratio_box.isChecked(),
+            self._days_box.isChecked(),
+            self._remove_action.currentText(),
+            self._ratio.currentText(),
+            self._days.currentText(),
+            self._delete_torrent_box.isChecked(),
+            self._exit_box.isChecked(),
+        ]
         self.save_clicked.emit(values)
         self.hide()
         self.close()

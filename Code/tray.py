@@ -1,10 +1,11 @@
 #!/usr/bin/python
 
-#import sys, os
+# import sys, os
 from shared import resource_path
 from PySide2.QtWidgets import QSystemTrayIcon, QMenu, QDialog
 from PySide2.QtGui import QIcon
 from PySide2.QtCore import Signal
+
 
 class TrayIcon(QSystemTrayIcon):
 

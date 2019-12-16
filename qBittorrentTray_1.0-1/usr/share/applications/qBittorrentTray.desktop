@@ -1,5 +1,5 @@
 [Desktop Entry]
-Version=0.2
+Version=1.0
 Type=Application
 Name=qBittorrentTray
 Exec=/usr/local/bin/qBittorrentTray %U

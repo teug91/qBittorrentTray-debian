@@ -10,8 +10,8 @@ from settings_window import Settings_Window
 from qbt import Qbt
 from qtsingleapplication import QtSingleApplication
 
-class Application():
 
+class Application:
     def __init__(self):
         self._env = self._get_env()
         self._app = QtSingleApplication()
@@ -70,6 +70,7 @@ class Application():
         self._qbt_thread.bad_settings.connect(self._open_settings)
         self._qbt_thread.delete_file.connect(self._delete_file)
         self._qbt_thread.finished.connect(self._restart_qbt_thread)
+        self._qbt_thread.exit.connect(self._exit)
         self._qbt_thread.start()
 
     def _open_settings(self):
@@ -101,6 +102,10 @@ class Application():
         os.remove(value)
 
     @staticmethod
+    def _exit():
+        sys.exit(0)
+
+    @staticmethod
     def _get_torrent(args):
         for arg in args:
             if arg.endswith(".torrent") or arg.startswith("magnet:?xt=urn:btih:"):
@@ -110,8 +115,8 @@ class Application():
     @staticmethod
     def _get_env():
         env = dict(os.environ)
-        lp_key = 'LD_LIBRARY_PATH'
-        lp_orig = env.get(lp_key + '_ORIG')
+        lp_key = "LD_LIBRARY_PATH"
+        lp_orig = env.get(lp_key + "_ORIG")
         if lp_orig is not None:
             env[lp_key] = lp_orig
         else:
@@ -119,6 +124,7 @@ class Application():
             if lp is not None:
                 env.pop(lp_key)
         return env
+
 
 if __name__ == "__main__":
     Application()

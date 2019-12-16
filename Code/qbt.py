@@ -4,11 +4,13 @@ import time
 from qbittorrent import Client
 from PySide2.QtCore import Signal, QThread
 
+
 class Qbt(QThread):
 
     bad_settings = Signal()
     icon = Signal(str)
     delete_file = Signal(str)
+    exit = Signal()
 
     def __init__(self, settings, torrent=None):
         super(Qbt, self).__init__()
@@ -31,8 +33,8 @@ class Qbt(QThread):
                 if self.remove_check:
                     if count == 0:
                         count = 3
-                        days = (self._settings[3])
-                        ratio = (self._settings[4])
+                        days = self._settings[3]
+                        ratio = self._settings[4]
                         self.remove_torrents(days, ratio)
                     else:
                         count += 3
@@ -83,10 +85,12 @@ class Qbt(QThread):
     def add_torrent(self, torrent):
         if torrent.endswith(".torrent"):
             try:
-                torrent_file = open(torrent, 'rb')
+                torrent_file = open(torrent, "rb")
                 self._qb.download_from_file(torrent_file)
                 if self._settings[8]:
                     self.delete_file.emit(torrent)
+                if self._settings[9]:
+                    self.exit.emit()
             except Exception as e:
                 print("Failed to add torrent")
                 print(torrent)
@@ -106,8 +110,8 @@ class Qbt(QThread):
             if torrents is None:
                 return None
             for torrent in torrents:
-                state = torrent['state']
-                if state in ('pausedUP', 'pausedDL'):
+                state = torrent["state"]
+                if state in ("pausedUP", "pausedDL"):
                     return "false"
         except:
             try:
@@ -125,7 +129,7 @@ class Qbt(QThread):
             elif self.torrents_running() == "false":
                 self._qb.resume_all()
         except:
-            print('Toggling failed!')
+            print("Toggling failed!")
 
     def _authenticate(self):
         authenticated = False
@@ -140,10 +144,14 @@ class Qbt(QThread):
             except Exception as e:
                 exception_type = type(e).__name__
                 print(exception_type)
-                if exception_type in ("MissingSchema", "LoginRequired", "AttributeError"):
+                if exception_type in (
+                    "MissingSchema",
+                    "LoginRequired",
+                    "AttributeError",
+                ):
                     credential_attempts += 1
                     if credential_attempts > 1:
-                        #self.stop_restart.emit()
+                        # self.stop_restart.emit()
                         self.bad_settings.emit()
                         self._stop = True
                         self.icon.emit("dc")
