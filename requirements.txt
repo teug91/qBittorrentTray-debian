@@ -26,7 +26,7 @@ pylint==1.9.5
 PySide2==5.13.0
 python-apt==1.9.0+ubuntu1
 python-qbittorrent==0.3.1
-pyxdg==0.25
+pyxdg==0.26
 requests==2.22.0
 SecretStorage==2.3.1
 shiboken2==5.13.0
