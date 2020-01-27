@@ -1,5 +1,15 @@
 #!/bin/bash
 
+if [ $# -eq 0 ]
+  then
+    echo "Version argument is missing"
+    exit 1
+fi
+
+version=$1
+
+mv "$(find qbittorrenttray_* -type d -print -quit)" qbittorrenttray_$version
+
 pyinstaller qbittorrenttray.spec
-mv dist/qbittorrenttray qBittorrentTray_1.0-1/usr/local/bin/qBittorrentTray
-dpkg-deb --build qBittorrentTray_1.0-1
+mv dist/qbittorrenttray qbittorrenttray_$version/usr/local/bin/qbittorrenttray
+dpkg-deb --build qbittorrenttray_$version

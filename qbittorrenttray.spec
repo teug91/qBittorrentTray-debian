@@ -3,7 +3,7 @@
 block_cipher = None
 
 a = Analysis(
-    ["Code/qbittorrenttray.py"],
+    ["qbittorrenttray/qbittorrenttray.py"],
     binaries=[],
     datas=[],
     hiddenimports=[],
@@ -18,22 +18,17 @@ a = Analysis(
 a.datas += [
     (
         "qbdark_big.png",
-        "/home/terje/Documents/personal/qBittorrentTray-debian/Resources/qbdark_big.png",
+        "qbittorrenttray/resources/qbdark_big.png",
         "DATA",
     ),
     (
         "qbdark_dc_big.png",
-        "/home/terje/Documents/personal/qBittorrentTray-debian/Resources/qbdark_dc_big.png",
+        "qbittorrenttray/resources/qbdark_dc_big.png",
         "DATA",
     ),
     (
         "qbdark_pause_big.png",
-        "/home/terje/Documents/personal/qBittorrentTray-debian/Resources/qbdark_pause_big.png",
-        "DATA",
-    ),
-    (
-        "qbdark.ico",
-        "/home/terje/Documents/personal/qBittorrentTray-debian/Resources/qbdark.ico",
+        "qbittorrenttray/resources/qbdark_pause_big.png",
         "DATA",
     ),
 ]

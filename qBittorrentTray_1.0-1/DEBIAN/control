@@ -1,7 +1,0 @@
-Package: qBittorrentTray
-Version: 1.0
-Section: base
-Priority: optional
-Architecture: amd64
-Maintainer: Terje Uglebakken <https://github.com/teug91>
-Description: System tray icon for qBittorrent WebUI.

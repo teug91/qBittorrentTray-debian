@@ -1,10 +1,7 @@
-__pycache__/
 .vscode/
-temp/
-plextray.spec
+__pycache__/
+env/
 build/
-*.pyc
-.pylintrc
 dist/
+qbittorrenttray_*/usr/local/bin/qbittorrenttray
 *.deb
-qBittorrentTray_*/usr/local/bin/qBittorrentTray
