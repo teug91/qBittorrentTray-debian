@@ -2,9 +2,7 @@
 
 import time
 from qbittorrent import Client
-# pylint: disable=no-name-in-module
 from PySide2.QtCore import Signal, QThread
-# pylint: enable=no-name-in-module
 
 
 class Qbt(QThread):

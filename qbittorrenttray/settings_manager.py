@@ -1,9 +1,7 @@
 #!./env/bin/python
 
 import base64
-# pylint: disable=no-name-in-module
 from PySide2.QtCore import Signal, QSettings, QObject
-# pylint: enable=no-name-in-module
 
 
 class SettingsManager(QObject):

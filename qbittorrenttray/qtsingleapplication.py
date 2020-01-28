@@ -23,11 +23,9 @@
 #
 ########################################################################################################################################################
 
-# pylint: disable=no-name-in-module
 from PySide2.QtNetwork import QLocalSocket, QLocalServer
 from PySide2.QtWidgets import QApplication
 from PySide2.QtCore import Signal, QTextStream
-# pylint: enable=no-name-in-module
 
 
 class QtSingleApplication(QApplication):

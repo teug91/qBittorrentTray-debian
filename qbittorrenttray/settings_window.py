@@ -1,7 +1,6 @@
 #!./env/bin/python
 
 from shared import resource_path
-# pylint: disable=no-name-in-module
 from PySide2.QtWidgets import (
     QLineEdit,
     QPushButton,
@@ -13,13 +12,11 @@ from PySide2.QtWidgets import (
     QComboBox,
     QLabel,
     QCheckBox,
-    QPushButton,
     QSizePolicy,
     QGroupBox,
 )
 from PySide2.QtGui import QIcon
 from PySide2.QtCore import Signal, Qt
-# pylint: enable=no-name-in-module
 
 
 class Settings_Window(QDialog):
@@ -87,12 +84,9 @@ class Settings_Window(QDialog):
         _bottom_grid_layout.setColumnMinimumWidth(1, 100)
         _bottom_grid_layout.setColumnStretch(1, 1)
 
-
         self._exit_box = QCheckBox("Exit after torrent is added")
         self._exit_box.setChecked(values[9])
-        self._exit_box.setToolTip(
-            "Exit after attempting to add .torrent"
-        )
+        self._exit_box.setToolTip("Exit after attempting to add .torrent")
         _bottom_grid_layout.addWidget(self._exit_box, 1, 0)
         self._delete_torrent_box = QCheckBox("Delete .torrent after torrent is added")
         self._delete_torrent_box.setChecked(values[8])

@@ -3,9 +3,7 @@
 import sys
 import os
 import subprocess
-# pylint: disable=no-name-in-module
 from PySide2.QtWidgets import QApplication, QDialog
-# pylint: enable=no-name-in-module
 from tray import TrayIcon
 from settings_manager import SettingsManager
 from settings_window import Settings_Window
