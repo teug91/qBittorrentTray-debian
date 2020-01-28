@@ -1,4 +1,4 @@
-# qBittorrentTrayPython
+# qBittorrentTray
 
 Debian version of [qBittorrentTray](https://github.com/teug91/qBittorrentTray).
 
@@ -19,5 +19,5 @@ deactivate
 ## Build
 
 ```bash
-./build.py 1.1-1
+./build.py
 ```
